@@ -1,0 +1,28 @@
+<mvc:View controllerName="com.syonchev.exercise4.controller.Platform" xmlns:mvc="sap.ui.core.mvc"  xmlns="sap.m">
+	<Shell id="Platform">
+		<App id="app">
+			<pages>
+				<Page title="Platforms">
+					<content>
+						<VBox fitContainer="true">
+							<Table items="{ path: '/PlatformsSet' }">
+								<columns>
+									<Column width="12em">
+										<Text text="Platform"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Navigation" press=".onPlatformPress">
+										<cells>
+											<ObjectIdentifier title="{PlatformName}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</VBox>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

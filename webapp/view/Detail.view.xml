@@ -1,0 +1,11 @@
+<mvc:View controllerName="com.syonchev.exercise4.controller.Detail" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page title="Platform Details">
+		<content>
+			<List headerText="Platform">
+				<DisplayListItem label="Platform Name - {PlatformName}"/>
+				<DisplayListItem label="Creator Name - {Creator}"/>
+				<DisplayListItem label="Headquarter - {Headquarter}"/>
+			</List>
+		</content>
+	</Page>
+</mvc:View>

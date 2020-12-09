@@ -1,0 +1,71 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZLEARNING_SY_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="Platforms" sap:content-version="1">
+				<Key><PropertyRef Name="PlatformName"/></Key><Property Name="PlatformName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Platform Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Creator" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Creator" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Established" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Established Date"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Headquarter" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Headquarters"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="toCourses" Relationship="ZLEARNING_SY_SRV.PlatformCourses" FromRole="FromRole_PlatformCourses"
+					ToRole="ToRole_PlatformCourses"/></EntityType>
+			<EntityType Name="Courses" sap:content-version="1">
+				<Key><PropertyRef Name="CourseName"/></Key><Property Name="CourseName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Course Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PlatformName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Platform Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Creator" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Creator" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PublishedAt" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Published Date"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Category" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="File" m:HasStream="true" sap:content-version="1">
+				<Key><PropertyRef Name="Filename"/></Key><Property Name="Filename" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Text (200 char)"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mimetype" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="ZC_COURSES_SYType" sap:label="Courses Consumption View" sap:content-version="1">
+				<Key><PropertyRef Name="CourseName"/></Key><Property Name="CourseName" Type="Edm.String" Nullable="false" MaxLength="50" sap:display-format="UpperCase" sap:label="Course Name"/><Property Name="PlatformName" Type="Edm.String" MaxLength="50" sap:display-format="UpperCase" sap:label="Platform Name"/><Property Name="Creator" Type="Edm.String" MaxLength="50" sap:display-format="UpperCase" sap:label="Creator"/><Property Name="PublishedDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Published Date"/><Property Name="CourseCategory" Type="Edm.String" MaxLength="50" sap:display-format="UpperCase" sap:label="Category"/></EntityType>
+			<EntityType Name="ZC_PLATFORMS_SYType" sap:label="Platforms Consumption View" sap:content-version="1">
+				<Key><PropertyRef Name="platform_name"/></Key><Property Name="platform_name" Type="Edm.String" Nullable="false" MaxLength="50" sap:display-format="UpperCase" sap:label="Platform Name"/><Property Name="creator" Type="Edm.String" MaxLength="50" sap:display-format="UpperCase" sap:label="Creator"/><Property Name="established" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Established Date"/><Property Name="headquarter" Type="Edm.String" MaxLength="50" sap:display-format="UpperCase" sap:label="Headquarters"/><NavigationProperty Name="to_Courses" Relationship="ZLEARNING_SY_SRV.assoc_95C37439A02348A8031E6C91B10EA2A1"
+					FromRole="FromRole_assoc_95C37439A02348A8031E6C91B10EA2A1" ToRole="ToRole_assoc_95C37439A02348A8031E6C91B10EA2A1"/></EntityType>
+			<ComplexType Name="PlatformNameCheck"><Property Name="Exists" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="R/2 table" sap:creatable="false" sap:updatable="false"
+				sap:sortable="false" sap:filterable="false"/></ComplexType>
+			<Association Name="PlatformCourses" sap:content-version="1"><End Type="ZLEARNING_SY_SRV.Platforms" Multiplicity="1" Role="FromRole_PlatformCourses"/><End Type="ZLEARNING_SY_SRV.Courses" Multiplicity="*" Role="ToRole_PlatformCourses"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_PlatformCourses"><PropertyRef Name="PlatformName"/></Principal>
+					<Dependent Role="ToRole_PlatformCourses"><PropertyRef Name="PlatformName"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_95C37439A02348A8031E6C91B10EA2A1" sap:content-version="1"><End Type="ZLEARNING_SY_SRV.ZC_PLATFORMS_SYType" Multiplicity="1" Role="FromRole_assoc_95C37439A02348A8031E6C91B10EA2A1"/><End Type="ZLEARNING_SY_SRV.ZC_COURSES_SYType" Multiplicity="*" Role="ToRole_assoc_95C37439A02348A8031E6C91B10EA2A1"/></Association>
+			<EntityContainer Name="ZLEARNING_SY_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="ZC_COURSES_SY" EntityType="ZLEARNING_SY_SRV.ZC_COURSES_SYType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="ZC_PLATFORMS_SY" EntityType="ZLEARNING_SY_SRV.ZC_PLATFORMS_SYType" sap:content-version="1"/><EntitySet Name="PlatformsSet" EntityType="ZLEARNING_SY_SRV.Platforms" sap:pageable="false" sap:content-version="1"/><EntitySet Name="CoursesSet" EntityType="ZLEARNING_SY_SRV.Courses" sap:pageable="false" sap:content-version="1"/><EntitySet Name="FileSet" EntityType="ZLEARNING_SY_SRV.File" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="assoc_95C37439A02348A8031E6C91B10EA2A1" Association="ZLEARNING_SY_SRV.assoc_95C37439A02348A8031E6C91B10EA2A1"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZC_PLATFORMS_SY" Role="FromRole_assoc_95C37439A02348A8031E6C91B10EA2A1"/><End EntitySet="ZC_COURSES_SY" Role="ToRole_assoc_95C37439A02348A8031E6C91B10EA2A1"/></AssociationSet>
+				<AssociationSet Name="PlatformCoursesSet" Association="ZLEARNING_SY_SRV.PlatformCourses" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="PlatformsSet" Role="FromRole_PlatformCourses"/><End EntitySet="CoursesSet" Role="ToRole_PlatformCourses"/></AssociationSet>
+				<FunctionImport Name="CheckPlatformName" ReturnType="ZLEARNING_SY_SRV.PlatformNameCheck" m:HttpMethod="POST"
+					sap:action-for="ZLEARNING_SY_SRV.Platforms"><Parameter Name="Platformname" Type="Edm.String" Mode="In"/></FunctionImport>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZLEARNING_SY_SRV.ZLEARNING_SY_SRV_Entities">
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZLEARNING_SY_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZLEARNING_SY_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
